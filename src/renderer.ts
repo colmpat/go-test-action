@@ -63,7 +63,7 @@ class Renderer {
 
     const rows: SummaryTableRow[] = [this.headers]
     for (let packageResult of resultsToRender) {
-      rows.push(...this.renderPackageRows(packageResult))
+      //rows.push(...this.renderPackageRows(packageResult))
     }
 
     await core.summary
@@ -201,7 +201,7 @@ class Renderer {
         `${packageResult.pointsEarned}/${packageResult.pointsPossible}`,
         `${(packageResult.packageEvent.elapsed || 0) * 1000}ms`,
       ],
-      [{ data: detailsForTests + detailsForOutput, colspan: '5' }],
+      [{ data: detailsForTests + detailsForOutput, colspan: '6' }],
     ]
   }
 
