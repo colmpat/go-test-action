@@ -67,10 +67,13 @@ class PackageResult {
         }
       } else {
         let conclusion = event.action as TestEventActionConclusion
+        let pointsEarned = conclusion === 'pass' && event.pointsPossible ? event.pointsPossible : 0;
+        this.pointsPossible += event.pointsPossible || 0
+        this.pointsEarned += pointsEarned
         this.tests[event.test] = {
           conclusion,
           subtests: this.tests[event.test]?.subtests || {},
-          points: conclusion === 'pass' && event.pointsPossible ? event.pointsPossible : 0,
+          points: pointsEarned,
         }
       }
     }
