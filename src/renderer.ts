@@ -98,12 +98,8 @@ class Renderer {
       for (let [key, value] of Object.entries(packageResult.conclusions)) {
         this.totalConclusions[key as TestEventActionConclusion] += value
       }
-      for (let points of Object.values(packageResult.pointsEarned)) {
-        this.totalPointsEarned += points
-      }
-      for (let points of Object.values(packageResult.pointsPossible)) {
-        this.totalPointsPossible += points
-      }
+      this.totalPointsEarned += packageResult.pointsEarned
+      this.totalPointsPossible += packageResult.pointsPossible
       packageResults.push(packageResult)
     }
 
@@ -148,7 +144,7 @@ class Renderer {
       summarized += ` (${conclusionText})`
     }
 
-    summarized += `<\\br><p id=\"grade\">(${this.totalPointsEarned}/${this.totalPointsPossible} points)</p>`
+    summarized += `><p>Score: (<code id=\"grade\">${this.totalPointsEarned}/${this.totalPointsPossible}</code></p>`
 
     return summarized
   }
