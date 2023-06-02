@@ -63,7 +63,7 @@ class Renderer {
 
     const rows: SummaryTableRow[] = [this.headers]
     for (let packageResult of resultsToRender) {
-      //rows.push(...this.renderPackageRows(packageResult))
+      rows.push(...this.renderPackageRows(packageResult))
     }
 
     await core.summary
