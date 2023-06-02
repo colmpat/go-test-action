@@ -41,7 +41,7 @@ class Runner {
 
     let score = await renderer.writeSummary()
 
-    core.debug(`FINAL_SCORE\t${score}`)
+    core.setOutput('score', score)
     process.exit(retCode)
   }
 
