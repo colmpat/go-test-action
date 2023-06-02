@@ -31,6 +31,8 @@ class Renderer {
     fail: 0,
     skip: 0,
   }
+  totalPointsPossible: number = 0
+  totalPointsEarned: number = 0
 
   constructor(
     moduleName: string | null,
@@ -96,6 +98,12 @@ class Renderer {
       for (let [key, value] of Object.entries(packageResult.conclusions)) {
         this.totalConclusions[key as TestEventActionConclusion] += value
       }
+      for (let points of Object.values(packageResult.pointsEarned)) {
+        this.totalPointsEarned += points
+      }
+      for (let points of Object.values(packageResult.pointsPossible)) {
+        this.totalPointsPossible += points
+      }
       packageResults.push(packageResult)
     }
 
@@ -139,6 +147,8 @@ class Renderer {
     if (conclusionText.length !== 0) {
       summarized += ` (${conclusionText})`
     }
+
+    summarized += `<\\br><p id=\"grade\">(${this.totalPointsEarned}/${this.totalPointsPossible} points)</p>`
 
     return summarized
   }
