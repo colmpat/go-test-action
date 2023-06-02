@@ -23,6 +23,7 @@ class Renderer {
     { data: '🟢 Passed', header: true },
     { data: '🔴 Failed', header: true },
     { data: '🟡 Skipped', header: true },
+    { data: '💯 Points', header: true },
     { data: '⏳ Duration', header: true },
   ]
   totalConclusions: ConclusionResults = {
@@ -197,6 +198,7 @@ class Renderer {
         packageResult.conclusions.pass.toString(),
         packageResult.conclusions.fail.toString(),
         packageResult.conclusions.skip.toString(),
+        `${packageResult.pointsEarned}/${packageResult.pointsPossible}`,
         `${(packageResult.packageEvent.elapsed || 0) * 1000}ms`,
       ],
       [{ data: detailsForTests + detailsForOutput, colspan: '5' }],

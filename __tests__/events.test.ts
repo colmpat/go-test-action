@@ -42,13 +42,13 @@ describe('events', () => {
 
   it('correctly indicates a subtest', () => {
     const subTestStdout =
-      '{"Time":"2022-07-10T22:42:11.9313-04:00","Action":"output","Package":"github.com/robherley/go-test-example/success","Test":"TestSuccess/Subtest(2)","Output":"    success_test.go:19: hello from subtest #2\\n"}'
+      '{"Time":"2022-07-10T22:42:11.9313-04:00","Action":"output","Package":"github.com/robherley/go-test-example/success","Test":"TestSuccess_80/Subtest(2)","Output":"    success_test.go:19: hello from subtest #2\\n"}'
 
     const subTestEvents = parseTestEvents(subTestStdout)
     expect(subTestEvents[0]).toHaveProperty('isSubtest', true)
 
     const topLevelTestStdout =
-      '{"Time":"2022-07-10T22:42:11.931141-04:00","Action":"output","Package":"github.com/robherley/go-test-example/success","Test":"TestSuccess","Output":"=== RUN   TestSuccess\\n"}'
+      '{"Time":"2022-07-10T22:42:11.931141-04:00","Action":"output","Package":"github.com/robherley/go-test-example/success","Test":"TestSuccess_80","Output":"=== RUN   TestSuccess_80\\n"}'
 
     const topLevelTestEvents = parseTestEvents(topLevelTestStdout)
     expect(topLevelTestEvents[0]).toHaveProperty('isSubtest', false)

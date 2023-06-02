@@ -32,6 +32,7 @@ export interface TestEvent {
   elapsed?: number // seconds
   output?: string
   // added fields
+  pointsPossible?: number
   isSubtest: boolean
   isPackageLevel: boolean
   isConclusive: boolean
@@ -48,8 +49,10 @@ export function parseTestEvents(stdout: string): TestEvent[] {
 
   const lines = stdout.split('\n').filter(line => line.length !== 0)
   for (let line of lines) {
+
     try {
       const json = JSON.parse(line)
+      const testFields = json.Test?.split('_') || []
       events.push({
         time: json.Time && new Date(json.Time),
         action: json.Action as TestEventAction,
@@ -57,6 +60,7 @@ export function parseTestEvents(stdout: string): TestEvent[] {
         test: json.Test,
         elapsed: json.Elapsed,
         output: json.Output,
+        pointsPossible: testFields.length > 1 ? parseInt(testFields[1]) : undefined,
         isCached: json.Output?.includes('\t(cached)') || false,
         isSubtest: json.Test?.includes('/') || false, // afaik there isn't a better indicator in test2json
         isPackageLevel: typeof json.Test === 'undefined',

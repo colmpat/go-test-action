@@ -6,12 +6,15 @@ export type ConclusionResults = { [key in TestEventActionConclusion]: number }
 export interface TestResult {
   conclusion?: TestEventActionConclusion
   subtests?: TestResults
+  points?: number
 }
 
 class PackageResult {
   packageEvent: TestEvent
   events: TestEvent[]
   tests: TestResults = {}
+  pointsPossible: number = 0
+  pointsEarned: number = 0
   conclusions: ConclusionResults = {
     pass: 0,
     fail: 0,
@@ -63,9 +66,11 @@ class PackageResult {
           },
         }
       } else {
+        let conclusion = event.action as TestEventActionConclusion
         this.tests[event.test] = {
-          conclusion: event.action as TestEventActionConclusion,
+          conclusion,
           subtests: this.tests[event.test]?.subtests || {},
+          points: conclusion === 'pass' && event.pointsPossible ? event.pointsPossible : 0,
         }
       }
     }

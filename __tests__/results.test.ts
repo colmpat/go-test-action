@@ -26,16 +26,16 @@ describe('results', () => {
     expect(packageResult.testCount()).toEqual(4)
     expect(packageResult.hasTests()).toBeTruthy()
     expect(packageResult.tests).toEqual({
-      TestSuccess: {
+      TestSuccess_80: {
         conclusion: 'pass',
         subtests: {
-          'TestSuccess/Subtest(1)': {
+          'TestSuccess_80/Subtest(1)': {
             conclusion: 'pass',
           },
-          'TestSuccess/Subtest(2)': {
+          'TestSuccess_80/Subtest(2)': {
             conclusion: 'pass',
           },
-          'TestSuccess/Subtest(3)': {
+          'TestSuccess_80/Subtest(3)': {
             conclusion: 'pass',
           },
         },
@@ -64,17 +64,17 @@ describe('results', () => {
     const packageEvent = getPackageLevelEvent(testEvents)
     const packageResult = new PackageResult(packageEvent, testEvents)
 
-    expect(packageResult.output()).toEqual(`=== RUN   TestSuccess
-=== RUN   TestSuccess/Subtest(1)
+    expect(packageResult.output()).toEqual(`=== RUN   TestSuccess_80
+=== RUN   TestSuccess_80/Subtest(1)
     success_test.go:19: hello from subtest #1
-=== RUN   TestSuccess/Subtest(2)
+=== RUN   TestSuccess_80/Subtest(2)
     success_test.go:19: hello from subtest #2
-=== RUN   TestSuccess/Subtest(3)
+=== RUN   TestSuccess_80/Subtest(3)
     success_test.go:19: hello from subtest #3
---- PASS: TestSuccess (0.00s)
-    --- PASS: TestSuccess/Subtest(1) (0.00s)
-    --- PASS: TestSuccess/Subtest(2) (0.00s)
-    --- PASS: TestSuccess/Subtest(3) (0.00s)
+--- PASS: TestSuccess_80 (0.00s)
+    --- PASS: TestSuccess_80/Subtest(1) (0.00s)
+    --- PASS: TestSuccess_80/Subtest(2) (0.00s)
+    --- PASS: TestSuccess_80/Subtest(3) (0.00s)
 `)
   })
 
