@@ -78,6 +78,8 @@ class Renderer {
       .addRaw('</div>')
       .addRaw(this.renderStderr())
       .write()
+
+    return `${this.totalPointsEarned}/${this.totalPointsPossible}`
   }
 
   /**

@@ -39,9 +39,10 @@ class Runner {
       this.omitPie
     )
 
-    await renderer.writeSummary()
+    let score = await renderer.writeSummary()
 
-    process.exit(retCode)
+    core.setOutput('score', score)
+    process.exit(0)
   }
 
   /**
