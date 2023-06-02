@@ -144,7 +144,7 @@ class Renderer {
       summarized += ` (${conclusionText})`
     }
 
-    summarized += `><p>Score: (<code id=\"grade\">${this.totalPointsEarned}/${this.totalPointsPossible}</code></p>`
+    summarized += `<p>Score: (<code id=\"grade\">${this.totalPointsEarned}/${this.totalPointsPossible}</code>)</p>`
 
     return summarized
   }
